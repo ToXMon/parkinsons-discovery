@@ -1,0 +1,45 @@
+# Akash deployment for trial-scout.
+# Profile and notification topic are injected as env vars at deploy time:
+# replace the two marked values before `akash tx deployment create`.
+#
+# Privacy note: env vars are visible to the provider. The profile contains
+# age, city, and DBS status for one person. Use a provider you are
+# comfortable with, or leave the profile off and run scans locally.
+---
+version: "2.0"
+
+services:
+  trial-scout:
+    image: ghcr.io/toxmon/parkinsons-discovery:latest
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    env:
+      - TRIAL_PROFILE_JSON={"age":70,"dbs":"considering","stage":"moderate","levodopa_years":4,"home_city":"jackson_ms","travel":"full_day","willing_observational":"yes"}
+      - TRIAL_SCOUT_NTFY_TOPIC=REPLACE_WITH_YOUR_NTFY_TOPIC
+      - TRIAL_SCOUT_INTERVAL_MINUTES=1440
+
+profiles:
+  compute:
+    trial-scout:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    global:
+      pricing:
+        trial-scout:
+          denom: uakt
+          amount: 500
+
+deployment:
+  trial-scout:
+    global:
+      profile: trial-scout
+      count: 1

@@ -85,6 +85,31 @@ def cmd_show(args):
     return 0
 
 
+def cmd_serve(args):
+    import os
+
+    from trial_scout import serve as serve_mod
+
+    raw = os.environ.get("TRIAL_PROFILE_JSON")
+    if raw:
+        import json
+
+        prof = json.loads(raw)
+    else:
+        profile_path, _ = _paths(args)
+        if not profile_path.exists():
+            print("No profile: set TRIAL_PROFILE_JSON or run trial-scout profile",
+                  file=sys.stderr)
+            return 1
+        prof = profile_mod.load(profile_path)
+    state_path = Path(os.environ.get("TRIAL_SCOUT_STATE_PATH", "data/trials_state.json"))
+    topic = os.environ.get("TRIAL_SCOUT_NTFY_TOPIC") or None
+    interval = int(os.environ.get("TRIAL_SCOUT_INTERVAL_MINUTES", str(args.interval_minutes)))
+    print(f"Serving on {args.host}:{args.port}; rescan every {interval} min")
+    serve_mod.serve(args.host, args.port, prof, state_path, interval, topic)
+    return 0
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="trial-scout",
@@ -114,12 +139,18 @@ def main(argv=None):
     show = sub.add_parser("show", help="Print one trial's full criteria")
     show.add_argument("nct_id")
 
+    serve = sub.add_parser("serve", help="HTTP API + background scan loop")
+    serve.add_argument("--host", default="0.0.0.0")
+    serve.add_argument("--port", type=int, default=8080)
+    serve.add_argument("--interval-minutes", type=int, default=1440)
+
     args = parser.parse_args(argv)
     commands = {
         "profile": cmd_profile,
         "scan": cmd_scan,
         "watch": cmd_watch,
         "show": cmd_show,
+        "serve": cmd_serve,
     }
     return commands[args.command](args)
 

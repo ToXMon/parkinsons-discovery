@@ -5,9 +5,24 @@ it will only surface the diff.
 """
 
 import json
+import urllib.request
 from pathlib import Path
 
 NL = chr(10)
+
+
+def notify(events, topic, server="https://ntfy.sh", title="Trial Scout"):
+    """Push the diff to an ntfy topic so the family gets pinged."""
+    if not events or not topic:
+        return False
+    body = render_events(events)
+    request = urllib.request.Request(
+        server.rstrip("/") + "/" + topic,
+        data=body.encode("utf-8"),
+        headers={"Title": title, "Tags": "microscope", "Priority": "default"},
+    )
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return response.status == 200
 
 
 def default_state_path(base):
