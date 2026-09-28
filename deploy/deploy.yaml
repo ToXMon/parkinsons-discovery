@@ -10,10 +10,11 @@ version: "2.0"
 
 services:
   trial-scout:
-    image: ghcr.io/toxmon/parkinsons-discovery:latest
+    image: ghcr.io/toxmon/parkinsons-discovery:sha-PIN_AFTER_BUILD
     expose:
       - port: 8080
         as: 80
+        proto: tcp
         to:
           - global: true
     env:
@@ -30,7 +31,7 @@ profiles:
         memory:
           size: 512Mi
         storage:
-          size: 512Mi
+          - size: 512Mi
   placement:
     global:
       pricing:
