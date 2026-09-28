@@ -19,7 +19,7 @@ services:
           - global: true
     env:
       - TRIAL_PROFILE_JSON={"age":70,"dbs":"considering","stage":"moderate","levodopa_years":4,"home_city":"jackson_ms","travel":"full_day","willing_observational":"yes"}
-      - TRIAL_SCOUT_NTFY_TOPIC=REPLACE_WITH_YOUR_NTFY_TOPIC
+      - TRIAL_SCOUT_NTFY_TOPIC=trialscout-c62667
       - TRIAL_SCOUT_INTERVAL_MINUTES=1440
 
 profiles:
@@ -36,8 +36,8 @@ profiles:
     global:
       pricing:
         trial-scout:
-          denom: uakt
-          amount: 500
+          denom: uact
+          amount: 5000
 
 deployment:
   trial-scout:
