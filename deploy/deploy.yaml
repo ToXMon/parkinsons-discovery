@@ -10,7 +10,7 @@ version: "2.0"
 
 services:
   trial-scout:
-    image: ghcr.io/toxmon/parkinsons-discovery:sha-PIN_AFTER_BUILD
+    image: ghcr.io/toxmon/trial-scout:sha-d4e4934dcd09d626fa7ae24d8ff4987004b7fc22
     expose:
       - port: 8080
         as: 80
