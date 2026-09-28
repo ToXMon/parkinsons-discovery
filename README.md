@@ -34,9 +34,10 @@ pd-registry show H-LRRK2-CARRIER
 ## Layout
 
 - src/parkinsons_discovery/ : registry package and CLI
+- docs/WORKFLOW.md : the research-to-drylab loop (Biomni, DeepMind tools, Chen-lab methods, brev.dev)
 - docs/research/ : kickoff prompts and research-pass outputs
 - docs/decisions/ : decision records
-- experiments/ : one folder per experiment, each with its own README
+- experiments/ : one card per drylab experiment (see experiments/README.md)
 - data/ : downloads and derived files (gitignored; see data/README.md)
 
 ## Rules of the road
