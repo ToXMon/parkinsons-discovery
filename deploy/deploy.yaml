@@ -10,7 +10,7 @@ version: "2.0"
 
 services:
   trial-scout:
-    image: ghcr.io/toxmon/trial-scout:sha-cc56b3a53b42ea5c99817645fd469588a6d9d443
+    image: ghcr.io/toxmon/trial-scout:sha-6ce8037257fbf110e21e362add1b8a8b6498709d
     expose:
       - port: 8080
         as: 80
