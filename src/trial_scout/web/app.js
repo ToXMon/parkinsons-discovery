@@ -76,7 +76,7 @@ function cardHtml(t) {
     <p class="meta">${escapeHtml(fmtSite(t))}</p>
     <ul class="reasons">${reasonsHtml(t)}</ul>
     <div class="card-actions">
-      <a class="linkbtn" href="${t.url}" target="_blank" rel="noopener">Full details</a>
+      <a class="linkbtn" href="/trial/${t.nct_id}" target="_blank" rel="noopener">Full details</a>
       <button class="linkbtn" data-open="${t.nct_id}">How to ask about it</button>
     </div>
   </article>`;
