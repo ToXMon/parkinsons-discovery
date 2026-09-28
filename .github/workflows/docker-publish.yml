@@ -7,6 +7,8 @@ on:
       - "src/trial_scout/**"
       - "pyproject.toml"
       - "Dockerfile"
+      - ".github/workflows/docker-publish.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
