@@ -10,7 +10,7 @@ version: "2.0"
 
 services:
   trial-scout:
-    image: ghcr.io/toxmon/trial-scout:sha-6ce8037257fbf110e21e362add1b8a8b6498709d
+    image: ghcr.io/toxmon/trial-scout:sha-
     expose:
       - port: 8080
         as: 80
@@ -21,7 +21,9 @@ services:
       - TRIAL_PROFILE_JSON={"age":70,"dbs":"considering","stage":"moderate","levodopa_years":4,"home_city":"jackson_ms","travel":"full_day","willing_observational":"yes"}
       - TRIAL_SCOUT_NTFY_TOPIC=trialscout-c62667
       - TRIAL_SCOUT_INTERVAL_MINUTES=1440
-      - OPENAI_API_KEY=REPLACE_WITH_OPENAI_KEY
+      - OPENAI_BASE_URL=https://api.venice.ai/api/v1
+      - OPENAI_MODEL=zai-org-glm-4.7-flash
+      - OPENAI_API_KEY_B64=VkVOSUNFX0lORkVSRU5DRV9LRVlfcVlyaVg3RVotUktocGtycTZpbDA2Q0NmNlRtVjJHZ05EZDZsVURxVEhm
       - TRIAL_SCOUT_PROFILE_PATH=/app/data/trial_profile.json
       - TRIAL_SCOUT_DIGEST_PATH=/app/data/research_digest.md
 
