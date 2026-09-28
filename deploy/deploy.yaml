@@ -10,7 +10,7 @@ version: "2.0"
 
 services:
   trial-scout:
-    image: ghcr.io/toxmon/trial-scout:sha-7b9dc2896e6b8a01e22784fd444bb1e95dad12e5
+    image: ghcr.io/toxmon/trial-scout:sha-ad2eaddff2a313769d8574a6398f8875e5ad4ce3
     expose:
       - port: 8080
         as: 80
@@ -22,7 +22,7 @@ services:
       - TRIAL_SCOUT_NTFY_TOPIC=trialscout-c62667
       - TRIAL_SCOUT_INTERVAL_MINUTES=1440
       - OPENAI_BASE_URL=https://api.venice.ai/api/v1
-      - OPENAI_MODEL=zai-org-glm-4.7-flash
+      - OPENAI_MODEL=openai-gpt-oss-120b
       - OPENAI_API_KEY_B64=VkVOSUNFX0lORkVSRU5DRV9LRVlfcVlyaVg3RVotUktocGtycTZpbDA2Q0NmNlRtVjJHZ05EZDZsVURxVEhm
       - TRIAL_SCOUT_PROFILE_PATH=/app/data/trial_profile.json
       - TRIAL_SCOUT_DIGEST_PATH=/app/data/research_digest.md
